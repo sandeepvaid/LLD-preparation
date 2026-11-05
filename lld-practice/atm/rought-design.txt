@@ -1,0 +1,159 @@
+ATM 
+
+Requirement -
+1 insert the card
+2. user can verify by adding pin
+3. see the balance
+4. withdraw money
+
+ATM STATES -> IDLE ->Insert card->insert pin ->  Withdraw -> View Balance  
+
+
+Entities needed
+
+- User = a user can do all the above operation
+- Card = needed to do all operation
+- Money
+- Pin
+
+- relationships 
+
+user -> card 
+
+
+ATM  <- card
+
+ATM IDLE 
+
+
+abstract class 
+class State(ABC):
+
+def __init__(self,atm):
+self.atm = atm
+
+@abstractmethod
+def insertATM()
+
+@abstractmethod
+def enterPin(pin)
+
+@abstractmethod
+def withdraw(amount)
+
+@abstractmethod
+def viewBalance
+
+
+class IdleState:
+-> user can only do insert the card
+
+def insertCardNumber(cardNumber):
+if self.cardNumber and self.cardManager.verifyCard():
+self.cardNumber = cardNumber
+-> change state to VerifyPinState
+
+
+class VerifyPinState:
+
+-> we need pin from the customer 
+
+@abstractmethod
+def enterPin(pin):
+self.cardManager.verifyPin(pin):
+-> if it is a verified pin then change state to transactionState
+
+
+class TransactionState:
+def viewBalance():
+return self.cardManager.viewBalance()
+
+class CardDetails:
+
+    def __init__(self,username,balance,cardPin):
+
+        self.username = username
+        self.balance = 0
+        self.cardPin = None
+
+    def getCardPin(cardPin):
+
+
+class Users:
+
+    def __init__(self,cardDetails):
+        self.users = {}
+
+    def addUsers(self,cardDetails):
+        self.users[cardDetails.cardPin] = cardDetails
+
+
+    def checkCardNUmber(cardNumber)
+        if cardNumber in self.users:
+            return True
+        else:
+            print("wrong pin")
+
+    def getPin(self,cardNumber):
+        return self.users[cardNumber].cardPin
+
+#Card management class -> handles everything related to withdraw , pin verification , card verification
+
+class CardManagement:
+
+def __init__(self):
+    self.atm = self
+
+def verifyPin(userInputPin)
+    cardNumber = self.
+    cardPin = self.users.getCardPin(cardNumber)
+
+def verifyCard()
+
+def viewBalance():
+return
+#create a strategy where based on the choosen strategy we can withdraw the money
+
+class WithDrawStrategy(ABC):
+
+@abstractmethod
+def withDraw():
+pass
+
+
+class cashWithDraw(WithDrawStrategy):
+
+def withDraw(amount,atm):
+print("withdrawing the {amount} via cash")
+
+
+class UpiWithDraw(WithDrawStrategy):
+
+def withDraw(amount,upiId):
+print("withdrawing the {amount} via upiid {upiId}")
+
+
+#Public class 
+
+class ATM:
+
+def __init__(self):
+self.idlestate = IdleState(self)
+self.verifyState = VerifyState(self)
+self.transactionState = TransactionState(self)
+self.curr_state = self.idlestate
+self.cardManager = CardManagement(self)
+self.cardNumber = None
+self.cardPin = None
+self.withdrawStrategy = None
+
+def insertCard(cardNumber):
+self.state.verifyCardNumber(cardNumber)
+
+def verifyPin(pin):
+self.state.enterPin(pin)
+
+
+def withdrawMoneyWithWithdrawStrategy(amount,withDrawStrategy):
+self.withdrawStrategy = withDrawStrategy
+self.withdrawStrategy.withdraw(amount)
